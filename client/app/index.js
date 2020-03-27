@@ -1,27 +1,34 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React from "react";
+import { render } from "react-dom";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import NotFound from "./components/App/NotFound";
 
-import App from './components/App/App';
-import NotFound from './components/App/NotFound';
+import Home from "./pages/Home/Home";
 
-import Home from './components/Home/Home';
+import "./styles/styles.scss";
+import RegisterPage from "./pages/Register/Register";
+import ProtectedRoute from "./helpers/ProtectedRoute";
+import LandingPage from "./pages/User/LandingPage";
+import RedirectRoute from "./helpers/RedirectRoute";
 
-import './styles/styles.scss';
-
-render((
+render(
   <Router>
-    <App>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route component={NotFound}/>
-      </Switch>
-    </App>
-  </Router>
-), document.getElementById('app'));
+    <Switch>
+      <RedirectRoute exact={true} path="/" component={Home} redirect="/app" />
+      <RedirectRoute
+        exact={true}
+        path="/registro"
+        component={RegisterPage}
+        redirect="/app"
+      />
+      <ProtectedRoute
+        exact={true}
+        path="/app"
+        component={LandingPage}
+      ></ProtectedRoute>
+      <Route component={NotFound} />
+    </Switch>
+  </Router>,
+  document.getElementById("app")
+);

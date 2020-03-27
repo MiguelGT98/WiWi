@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
+let jwt = require("jsonwebtoken");
+let config = require("../../../config/config");
+
 module.exports = app => {
   app.post("/api/users", function(req, res, next) {
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
@@ -14,7 +17,13 @@ module.exports = app => {
 
       user
         .save()
-        .then(() => res.json(user))
+        .then(result => {
+          let token = jwt.sign(
+            { email: result.email, id: result._id, username: result.username },
+            config.secret
+          );
+          return res.json({ success: true, message: "Auth succesful", token });
+        })
         .catch(err => next(err));
     });
   });
@@ -37,7 +46,11 @@ module.exports = app => {
             });
           }
 
-          return res.json({ username: user.username });
+          let token = jwt.sign(
+            { email: user.email, id: user._id, username: user.username },
+            config.secret
+          );
+          return res.json({ success: true, message: "Auth succesful", token });
         });
       })
       .catch(err => next(err));
