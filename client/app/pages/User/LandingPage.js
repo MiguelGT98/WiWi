@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
+import App from "../../components/App/App";
 
 import "../../styles/landing.scss";
 
@@ -9,10 +10,9 @@ const LandingPage = ({ history }) => {
     history.push("/");
   };
   return (
-    <div className="landing-page">
-      Landing
-      <button onClick={logOut}>Log out</button>
-    </div>
+    <App>
+      <div className="landing-page"></div>
+    </App>
   );
 };
 

@@ -2,7 +2,6 @@ import React from "react";
 import { render } from "react-dom";
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import App from "./components/App/App";
 import NotFound from "./components/App/NotFound";
 
 import Home from "./pages/Home/Home";
@@ -23,9 +22,11 @@ render(
         component={RegisterPage}
         redirect="/app"
       />
-      <App>
-        <ProtectedRoute path="/app" component={LandingPage}></ProtectedRoute>
-      </App>
+      <ProtectedRoute
+        exact={true}
+        path="/app"
+        component={LandingPage}
+      ></ProtectedRoute>
       <Route component={NotFound} />
     </Switch>
   </Router>,
