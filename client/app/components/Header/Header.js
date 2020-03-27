@@ -1,17 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import Searchbar from "./Searchbar";
+import Links from "./Links";
 
-const Header = () => (
-  <header>
-    <Link to="/">Home</Link>
-
-    <nav>
-      <Link to="/helloworld">Hello World</Link>
-    </nav>
-
-    <hr />
-  </header>
+const Header = ({ user }) => (
+  <nav>
+    <Searchbar></Searchbar>
+    <Links user={user}></Links>
+  </nav>
 );
 
 export default Header;

@@ -6,3 +6,47 @@ body {
   font-family: Nunito, sans-serif;
   font-size: 16px;
 }
+
+nav {
+  padding: .5rem 50px;
+  box-sizing: border-box;
+  background-color: #441975;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+
+  .searchbar {
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-left: 1rem;
+      background-color: transparent;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+    }
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  .links {
+    padding: 0;
+    display: flex;
+    list-style: none;
+    a {
+      margin-left: 50px;
+      font-weight: 300;
+      color: #fff;
+      text-decoration: none;
+
+      &.active {
+        color: #fdb911;
+      }
+    }
+  }
+}
