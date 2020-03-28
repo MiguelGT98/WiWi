@@ -10,5 +10,4 @@ var userSchema = new mongoose.Schema({
 
 // Apply the uniqueValidator plugin to userSchema.
 userSchema.plugin(uniqueValidator);
-
 module.exports = mongoose.model("User", userSchema);

@@ -1,118 +1,110 @@
 form {
-  z-index: 2;
-  max-width: 600px;
-
-  h2 {
-    margin: 0;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 1.2;
-    text-align: center;
-    color: #fdb911;
-  }
-
-  input {
-    background: #ffffff;
-    opacity: 0.5;
-    border-radius: 5px;
-    min-width: 360px;
-    display: block;
-    border: 0;
-    padding: 0.75rem 1rem;
-    margin: 2rem 0;
-
-    &:last-of-type {
-      margin-bottom: 1rem;
+    z-index: 2;
+    max-width: 600px;
+    h2 {
+        margin: 0;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 1.2;
+        text-align: center;
+        color: #fdb911;
     }
-  }
-
-  a {
-    font-weight: 300;
-    font-size: 1rem;
-    display: block;
-    color: #fff;
-    text-align: right;
-
-    &.center {
-      text-align: center;
-      color: #fdb911;
-      text-decoration: none;
-    }
-  }
-
-  button {
-    background-color: #fdb911;
-    border-radius: 5px;
-    min-width: 320px;
-    display: block;
-    border: 0;
-    padding: 0.75rem 1rem;
-    margin: 2rem auto 1rem auto;
-    color: #281043;
-    font-weight: 700;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .social-auth {
-    display: flex;
-    max-width: 240px;
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 2rem auto 0 auto;
-
-    .social {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 25px;
-
-      &.facebook {
-        background-color: #1877f2;
-        svg path {
-          fill: #fff !important;
+    input,
+    textarea,
+    select {
+        background: #ffffff;
+        opacity: 0.5;
+        border-radius: 5px;
+        min-width: 360px;
+        display: block;
+        border: 0;
+        padding: 0.75rem 1rem;
+        margin: 2rem 0;
+        -webkit-box-sizing: border-box;
+        /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;
+        /* Firefox, other Gecko */
+        box-sizing: border-box;
+        &:last-of-type {
+            margin-bottom: 1rem;
         }
-      }
-
-      &.google {
-        background-color: #fff;
-        svg {
-          .st0 {
-            fill: #4285f4;
-          }
-          .st1 {
-            fill: #34a853;
-          }
-          .st2 {
-            fill: #fbbc04;
-          }
-          .st3 {
-            fill: #ea4335;
-          }
-        }
-      }
-
-      &.steam {
-        background-color: #fff;
-        svg path {
-          fill: black !important;
-        }
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      svg {
-        width: 24px;
-        height: 24px;
-      }
     }
-  }
+    a {
+        font-weight: 300;
+        font-size: 1rem;
+        display: block;
+        color: #fff;
+        text-align: right;
+        &.center {
+            text-align: center;
+            color: #fdb911;
+            text-decoration: none;
+        }
+    }
+    button {
+        background-color: #fdb911;
+        border-radius: 5px;
+        min-width: 320px;
+        display: block;
+        border: 0;
+        padding: 0.75rem 1rem;
+        margin: 2rem auto 1rem auto;
+        color: #281043;
+        font-weight: 700;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .social-auth {
+        display: flex;
+        max-width: 240px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2rem auto 0 auto;
+        .social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            &.facebook {
+                background-color: #1877f2;
+                svg path {
+                    fill: #fff !important;
+                }
+            }
+            &.google {
+                background-color: #fff;
+                svg {
+                    .st0 {
+                        fill: #4285f4;
+                    }
+                    .st1 {
+                        fill: #34a853;
+                    }
+                    .st2 {
+                        fill: #fbbc04;
+                    }
+                    .st3 {
+                        fill: #ea4335;
+                    }
+                }
+            }
+            &.steam {
+                background-color: #fff;
+                svg path {
+                    fill: black !important;
+                }
+            }
+            &:hover {
+                cursor: pointer;
+            }
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
 }

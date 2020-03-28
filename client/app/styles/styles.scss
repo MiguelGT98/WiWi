@@ -1,52 +1,78 @@
 @charset "UTF-8";
-
 @import "vendor/normalize";
-
 body {
-  font-family: Nunito, sans-serif;
-  font-size: 16px;
+    background-color: #281043;
+    font-family: Nunito, sans-serif;
+    font-size: 16px;
 }
 
 nav {
-  padding: .5rem 50px;
-  box-sizing: border-box;
-  background-color: #441975;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-
-  .searchbar {
+    padding: .5rem 50px;
+    box-sizing: border-box;
+    background-color: #441975;
     display: flex;
     align-items: center;
-
-    input {
-      margin-left: 1rem;
-      background-color: transparent;
-      border-radius: 5px;
-      border: none;
-      color: #fff;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    .searchbar {
+        display: flex;
+        align-items: center;
+        input {
+            margin-left: 1rem;
+            background-color: transparent;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+        }
+        svg {
+            fill: #fff;
+        }
     }
-
-    svg {
-      fill: #fff;
+    .links {
+        padding: 0;
+        display: flex;
+        list-style: none;
+        a {
+            margin-left: 50px;
+            font-weight: 300;
+            color: #fff;
+            text-decoration: none;
+            &.active {
+                color: #fdb911;
+            }
+        }
     }
-  }
+}
 
-  .links {
-    padding: 0;
-    display: flex;
-    list-style: none;
-    a {
-      margin-left: 50px;
-      font-weight: 300;
-      color: #fff;
-      text-decoration: none;
+.white {
+    color: white;
+}
 
-      &.active {
-        color: #fdb911;
-      }
+.button {
+    color: #fdb911;
+    padding: 10px 20px;
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    .fai {
+        margin-left: 10px;
     }
-  }
+}
+
+.button.full {
+    color: #281043;
+    background-color: #fdb911;
+    border-radius: 5px;
+}
+
+.button.right {
+    position: absolute;
+    right: 0;
+}
+
+.button:hover {
+    opacity: .8;
 }

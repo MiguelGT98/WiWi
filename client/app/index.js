@@ -12,6 +12,11 @@ import ProtectedRoute from "./helpers/ProtectedRoute";
 import LandingPage from "./pages/User/LandingPage";
 import RedirectRoute from "./helpers/RedirectRoute";
 
+import TournamentHome from "./pages/Tournaments/tournamentHome";
+import TournamentDetail from "./pages/Tournaments/TournamentDetail";
+import TournamentNew from "./pages/Tournaments/TournamentNew";
+
+
 render(
   <Router>
     <Switch>
@@ -26,6 +31,26 @@ render(
         exact={true}
         path="/app"
         component={LandingPage}
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/app/torneos"
+        component={TournamentHome}
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/app/torneos/add"
+        component={TournamentHome}
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/app/torneos/:id"
+        component={TournamentDetail}
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/app/add/torneos"
+        component={TournamentNew}
       ></ProtectedRoute>
       <Route component={NotFound} />
     </Switch>
