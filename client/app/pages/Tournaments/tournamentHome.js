@@ -45,11 +45,19 @@ class TournamentHome extends React.Component {
 
   render() {
     const { error, isLoaded, contents } = this.state;
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
+      for(let item of contents){
+        let d = new Date(item.startsAt*1000)
+        item.startsAt = d.toLocaleString()
+        console.log(item.startsAt)
+        // item.startsAt = new Date(item.startsAt*1000)
+        // item.endsAt = new Date(item.endsAt*1000)
+      }
       return (
         <App>
           <div className="tournament-page">
@@ -59,7 +67,7 @@ class TournamentHome extends React.Component {
             </div>
             <div className="item-container">
               {contents.map(item => (
-                <a key={item.name} className="item" href={'/app/torneos/' + item._id}>
+                <a key={item.id} className="item" href={'/app/torneos/' + item._id}>
                   <div className="image-fader">
                     <p className="white">{item.game.name}</p>
                   </div>
