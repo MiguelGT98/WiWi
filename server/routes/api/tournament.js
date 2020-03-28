@@ -50,6 +50,7 @@ module.exports = app => {
           tournament
             .save()
             .then(result => {
+              return res.redirect("/app/torneos");
               return res.json({
                 success: true,
                 message: "Tournament created succesfuly"
