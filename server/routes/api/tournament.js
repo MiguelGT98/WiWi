@@ -51,10 +51,6 @@ module.exports = app => {
             .save()
             .then(result => {
               return res.redirect("/app/torneos");
-              return res.json({
-                success: true,
-                message: "Tournament created succesfuly"
-              });
             })
             .catch(err => next(err));
         }
@@ -86,5 +82,47 @@ module.exports = app => {
         });
       })
       .catch(err => next(err));
+  });
+
+  app.patch("/api/tournaments/register/:id", function(req, res, next) {
+    var updateObject = req.body; // {last_name : "smith", age: 44}
+    var id = req.params.id;
+    Tournament.findOne({ _id: req.params.id })
+      .then(tournament => {
+        let i = 0;
+        let num = 0;
+        let hasUser = false
+        for(let p of tournament.participants){
+          if(p.id == updateObject.id){
+            hasUser = true
+            num = i
+            // return res.send({
+            //   success: true,
+            //   message: "User unregistration complete!"
+            // });
+          }
+          i++ 
+        }
+
+        if(!hasUser){
+          tournament.participants.push(updateObject)
+        }else{
+          tournament.participants.splice(num,1)
+        }
+        
+        Tournament.updateOne(
+          { _id: tournament.id },  // <-- find stage
+          { $set: {                // <-- set stage
+              participants : tournament.participants
+            } 
+          }  
+        ).then(tournament => {
+          return res.json({
+              success: true,
+              message: "Update Successful"
+            });
+        }).catch(err => next(err)); 
+      })
+    .catch(err => next(err));
   });
 };

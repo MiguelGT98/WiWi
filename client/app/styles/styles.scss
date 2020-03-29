@@ -55,11 +55,21 @@ nav {
     padding: 10px 20px;
     margin: 0;
     text-decoration: none;
+    border: none;
     cursor: pointer;
     display: inline-block;
     .fai {
         margin-left: 10px;
     }
+}
+
+.button.large {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .button.full {

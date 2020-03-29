@@ -52,8 +52,10 @@
                     margin: 10px 0;
                 }
                 p {
+                    font-size: 16px;
                     margin: 10px 0;
                     font-weight: 100;
+                    font-weight: lighter;
                     .fai {
                         margin-right: 5px;
                     }
@@ -69,6 +71,7 @@
     min-height: calc(100vh - 90px);
     .header {
         padding-top: 48px;
+        margin-bottom: -5px;
         img {
             height: 300px;
             width: 100%;
@@ -79,7 +82,17 @@
     }
     .container {
         padding: 0 50px;
-        margin-top: 20px;
+        padding-top: 20px;
+        width: 70%;
+        display: inline-block;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        .info,
+        .participants,
+        .rules {
+            margin-bottom: 40px;
+        }
         .title {
             position: relative;
             h2 {
@@ -87,6 +100,51 @@
                 color: #fdb911;
                 line-height: 40px;
             }
+        }
+    }
+    .registerForm {
+        width: 30%;
+        min-height: calc(100vh - 90px);
+        display: inline-block;
+        float: right;
+        // background-color: #1c0b30;
+        // -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+        // -moz-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+        // box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+        padding: 0 20px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: white;
+        .shadow {
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, .2);
+            padding: 20px;
+            border-radius: 5px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            p {
+                margin-top: 0;
+            }
+            h3 {
+                font-size: 30px;
+                text-align: center;
+                margin: 5px;
+                margin-top: 20px;
+            }
+            .button {
+                margin-top: 20px;
+            }
+        }
+    }
+    .participants {
+        div {
+            margin: 10px 0;
+            background-color: rgba(0, 0, 0, .2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
         }
     }
 }
