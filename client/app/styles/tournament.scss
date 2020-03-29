@@ -104,7 +104,6 @@
     }
     .registerForm {
         width: 30%;
-        min-height: calc(100vh - 90px);
         display: inline-block;
         float: right;
         // background-color: #1c0b30;
@@ -145,6 +144,69 @@
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
+        }
+    }
+    .borrar {
+        margin-left: 50px;
+    }
+    .bracketContainer {
+        background-color: rgba(0, 0, 0, .2);
+        width: calc(100% - 100px);
+        height: 90vh;
+        padding: 20px;
+        margin: 0 auto;
+        overflow: scroll;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        display: flex;
+        border-radius: 5px;
+        .bracket-col {
+            width: 250px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            div:hover p {
+                background-color: #441975;
+                z-index: 2;
+                cursor: pointer;
+            }
+            div {
+                border-radius: 5px;
+                color: white;
+                padding: 0;
+                margin: 0 20px;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                p {
+                    align-self: center;
+                    background-color: #1A0A2B;
+                    padding: 10px 15px;
+                    margin: 0;
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+            div:nth-child(2n) {
+                .detail {
+                    position: absolute;
+                    width: 3px;
+                    height: 100%;
+                    bottom: 50%;
+                    right: 0;
+                    background-color: #1A0A2B;
+                    span {
+                        width: 43px;
+                        height: 3px;
+                        background-color: #1A0A2B;
+                        position: absolute;
+                        bottom: 50%;
+                    }
+                }
+            }
         }
     }
 }
