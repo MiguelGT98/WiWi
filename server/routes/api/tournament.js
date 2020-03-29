@@ -107,6 +107,7 @@ module.exports = app => {
         if(!hasUser){
           tournament.participants.push(updateObject)
         }else{
+          console.log("splice")
           tournament.participants.splice(num,1)
         }
         

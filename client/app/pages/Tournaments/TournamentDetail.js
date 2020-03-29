@@ -4,7 +4,6 @@ import App from "../../components/App/App";
 import { decode } from "jsonwebtoken";
 import "../../styles/tournament.scss";
 
-
 export function Rtif({ boolean, ...props }) {
   const { children } = props;
   if (boolean) return { ...children };
@@ -17,8 +16,54 @@ class TournamentDetail extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      contentss: []
+      contents: []
     };
+  }
+
+  genBracket(participants) {
+    let names = [];
+    for(let p of participants){names.push(p)}
+    this.shuffle(names);
+    const length = names.length;
+    let p = names.length;
+    let sum = 0;
+    let bracket = [];
+    if (length > 1) {
+      bracket.push(new Array(p));
+      // Get array size of all matches
+      do {
+        p = Math.ceil(p / 2);
+        bracket.push(new Array(p).fill({ name: "-" }));
+      } while (p != 1);
+
+      //Generate bracket
+      for (let i = 0; i < length; i++) {
+        bracket[0][i] = names[0];
+        names.shift();
+        this.shuffle(names);
+      }
+    }else{
+      bracket.push([{name:'No hay suficientes participantes'}])
+    }
+    return bracket;
+  }
+
+
+  shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  setWinBracket(row, col){
+    const player = this.state.bracket[row][col]
+    if(player.name!='-'){
+      console.log(Math.floor(col/2))
+      this.state.bracket[row+1][Math.floor(col/2)] = player
+    }
+    this.setState({
+      isLoaded: true,
+      contents: this.state.contents,
+      bracket: this.state.bracket
+    });
   }
 
   componentDidMount() {
@@ -31,9 +76,9 @@ class TournamentDetail extends React.Component {
         result => {
           this.setState({
             isLoaded: true,
-            contents: result.message
+            contents: result.message,
+            bracket: this.genBracket(result.message.participants)
           });
-          console.log(result.message);
         },
         error => {
           this.setState({
@@ -45,8 +90,8 @@ class TournamentDetail extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, contents } = this.state;
-    let isUserRegistred=false;
+    const { error, isLoaded, contents, bracket } = this.state;
+    let isUserRegistred = false;
     const jwt = localStorage.getItem("jwt");
     const obj = decode(jwt);
     const id = obj.id;
@@ -57,15 +102,12 @@ class TournamentDetail extends React.Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-
-      for(let p of contents.participants){
-        if (p._id=id){
-          isUserRegistred = true
+      for (let p of contents.participants) {
+        if ((p._id = id)) {
+          isUserRegistred = true;
         }
       }
 
-
-      console.log(contents.startsAt);
       let countDownDate = new Date(contents.startsAt * 1000).getTime();
       let x = setInterval(function() {
         let now = new Date().getTime();
@@ -89,11 +131,11 @@ class TournamentDetail extends React.Component {
 
         if (distance < 0) {
           clearInterval(x);
-          document.getElementById("demo").innerHTML = "EXPIRED";
+          document.getElementById("demo").innerHTML = "00h 00m 00s";
         }
       }, 1000);
 
-      function handleClick(e) {
+      function registerUser(e) {
         e.preventDefault();
         fetch("/api/tournaments/register/" + contents._id, {
           method: "PATCH",
@@ -134,27 +176,59 @@ class TournamentDetail extends React.Component {
               </div>
               <div className="participants">
                 <h3 className="white">Participantes: </h3>
-
-                {contents.participants.map(p => (
-                  <div key={p._id}>{p.name}</div>
-                ))}
+                  {contents.participants.map((item, index) => {
+                      return (
+                        <div key={index}>
+                         {item.name}
+                        </div>
+                      );
+                    })}
               </div>
             </div>
             <div className="registerForm">
               <div className="shadow">
                 <p>El torneo empieza en: </p>
-                <h3 id="demo" className="white"></h3>
-                <Rtif boolean={!isUserRegistred}>
-                  <a className="button full large" onClick={handleClick} href="/app/torneos">
+                <h3 id="demo" className="white">
+                  00h 00m 00s
+                </h3>
+                {!isUserRegistred ? (
+                  <a
+                    className="button full large"
+                    onClick={registerUser}
+                    href="/app/torneos"
+                  >
                     Registrar
                   </a>
-                </Rtif>
-                <Rtif boolean={isUserRegistred}>
-                  <a className="button large" onClick={handleClick} href="/app/torneos">
+                ) : (
+                  <a
+                    className="button large"
+                    onClick={registerUser}
+                    href="/app/torneos"
+                  >
                     Dar de Baja
                   </a>
-                </Rtif>
+                )}
               </div>
+            </div>
+            <h3 className="white borrar">Bracket: </h3>
+            <div className="bracketContainer">
+              {bracket.map((row, rowIndex) => {
+                return (
+                  <div key={rowIndex} className="bracket-col">
+                    {row.map((col, colIndex) => {
+                      return (
+                        <div key={colIndex} onClick={() => this.setWinBracket(rowIndex,colIndex)}>
+                          <span className="detail">
+                            <span></span>
+                          </span>
+                          <p>{col.name}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+              {console.log(bracket)}
             </div>
           </div>
         </App>
