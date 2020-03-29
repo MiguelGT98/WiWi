@@ -15,7 +15,13 @@ import RedirectRoute from "./helpers/RedirectRoute";
 import TournamentHome from "./pages/Tournaments/tournamentHome";
 import TournamentDetail from "./pages/Tournaments/TournamentDetail";
 import TournamentNew from "./pages/Tournaments/TournamentNew";
-
+import ProfilePage from "./pages/User/Profile/ProfilePage";
+import Tournaments from "./components/User/Tournaments";
+import Trophies from "./components/User/Trophies";
+import Bets from "./components/User/Bets";
+import MyInformation from "./components/User/MyInformation";
+import PaymentMethods from "./components/User/PaymentMethods";
+import MyTournaments from "./components/User/MyTournaments";
 
 render(
   <Router>
@@ -32,6 +38,48 @@ render(
         path="/app"
         component={LandingPage}
       ></ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/perfil/torneos"
+        component={ProfilePage}
+      >
+        <Tournaments></Tournaments>
+      </ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/perfil/trofeos"
+        component={ProfilePage}
+      >
+        <Trophies></Trophies>
+      </ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/perfil/apuestas"
+        component={ProfilePage}
+      >
+        <Bets></Bets>
+      </ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/perfil/informacion"
+        component={ProfilePage}
+      >
+        <MyInformation></MyInformation>
+      </ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/perfil/metodos-de-pago"
+        component={ProfilePage}
+      >
+        <PaymentMethods></PaymentMethods>
+      </ProtectedRoute>
+      <ProtectedRoute
+        exact={true}
+        path="/perfil/mis-torneos"
+        component={ProfilePage}
+      >
+        <MyTournaments></MyTournaments>
+      </ProtectedRoute>
       <ProtectedRoute
         exact={true}
         path="/app/torneos"

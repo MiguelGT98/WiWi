@@ -15,7 +15,7 @@ const Links = ({ user }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink exact activeClassName="active" to="/profile">
+        <NavLink exact activeClassName="active" to="/perfil/torneos">
           {user ? user.username : "Lucer9"}
         </NavLink>
       </li>
