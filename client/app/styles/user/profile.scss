@@ -1,0 +1,21 @@
+.profile {
+  display: flex;
+  justify-content: space-between;
+
+  & > :not(.sidebar-menu) {
+    flex: 1 1 auto;
+    padding: 4rem;
+
+    h2 {
+      color: #fdb911;
+    }
+  }
+}
+
+.my-information {
+  form {
+    button {
+      margin: 2rem 0;
+    }
+  }
+}

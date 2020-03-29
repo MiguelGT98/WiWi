@@ -1,4 +1,6 @@
 const User = require("../../models/User");
+const Tournament = require("../../models/Tournament");
+
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -7,6 +9,38 @@ let jwt = require("jsonwebtoken");
 let config = require("../../../config/config");
 
 module.exports = app => {
+  app.get("/api/user/:id", function(req, res, next) {
+    User.findById(req.params.id, "email username _id").then(user => {
+      if (!user) {
+        return res.json({ success: false, message: "User not found" });
+      }
+
+      return res.json({ success: true, message: "Get succesful", user });
+    });
+  });
+
+  app.get("/api/user/:id/tournaments", function(req, res, next) {
+    User.findById(req.params.id, "email username _id")
+      .then(user => {
+        if (!user) {
+          return res.json({ success: false, message: "User not found" });
+        }
+
+        return Tournament.find({ "participants.id": req.params.id });
+      })
+      .then(tournaments => {
+        if (!tournaments) {
+          return res.json({ success: false, message: "No tournaments" });
+        }
+
+        return res.json({
+          success: true,
+          message: "Get succesful",
+          tournaments
+        });
+      });
+  });
+
   app.post("/api/users", function(req, res, next) {
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
       const user = new User({
